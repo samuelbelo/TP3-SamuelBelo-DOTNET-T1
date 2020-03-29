@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using TP3_SamuelBelo.Models;
+using TP3_SamuelBelo.Repositorys;
 using TP3_SamuelBelo.Repositorys.Implementations;
 using TP3_SamuelBelo.Services.Implementations;
 
@@ -29,7 +30,8 @@ namespace TP3_SamuelBelo.Controllers
         // GET: Pessoa/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pessoa = _pessoaService.GetById(id);
+            return View(pessoa);
         }
 
         // GET: Pessoa/Create
@@ -62,7 +64,8 @@ namespace TP3_SamuelBelo.Controllers
         // GET: Pessoa/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var pessoa = _pessoaService.GetById(id);
+            return View(pessoa);
         }
 
         // POST: Pessoa/Edit/5
@@ -72,8 +75,7 @@ namespace TP3_SamuelBelo.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
+                _pessoaService.Update(id, pessoa);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -85,7 +87,8 @@ namespace TP3_SamuelBelo.Controllers
         // GET: Pessoa/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var pessoa = _pessoaService.GetById(id);
+            return View(pessoa);
         }
 
         // POST: Pessoa/Delete/5
@@ -96,7 +99,7 @@ namespace TP3_SamuelBelo.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                 _pessoaService.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

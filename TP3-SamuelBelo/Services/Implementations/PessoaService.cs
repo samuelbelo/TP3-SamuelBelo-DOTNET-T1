@@ -30,9 +30,24 @@ namespace TP3_SamuelBelo.Services.Implementations
 
         }
 
+        public void Delete(int id)
+        {
+            _pessoaRepository.Delete(id);
+        }
+
         public IEnumerable<Pessoa> GetAll()
         {
             return _pessoaRepository.GetAll();
+        }
+
+        public Pessoa GetById(int id)
+        {
+            return _pessoaRepository.GetById(id);
+        }
+
+        public void Update(int id, Pessoa pessoaUpdated)
+        {
+            _pessoaRepository.Update(id, pessoaUpdated);
         }
     }
 }

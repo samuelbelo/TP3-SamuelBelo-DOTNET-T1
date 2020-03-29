@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TP3_SamuelBelo.Repositorys;
+using TP3_SamuelBelo.Repositorys.Implementations;
 
 namespace TP3_SamuelBelo
 {

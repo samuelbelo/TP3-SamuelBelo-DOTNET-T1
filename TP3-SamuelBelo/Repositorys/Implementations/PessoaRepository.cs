@@ -47,6 +47,7 @@ namespace TP3_SamuelBelo.Repositorys.Implementations
             }
         }
 
+
         public IEnumerable<Pessoa> GetAll()
         {
             const string cmdText = "SELECT * FROM Pessoa;";
@@ -75,5 +76,79 @@ namespace TP3_SamuelBelo.Repositorys.Implementations
                 return pessoas;
             }
         }
+        public Pessoa GetById(int id)
+        {
+            const string cmdText = "SELECT * FROM Pessoa WHERE Id = @id";
+
+            using(var sqlConnection = new SqlConnection(_connectionString))
+            using (var sqlCommand = new SqlCommand(cmdText, sqlConnection))
+            {
+                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.Parameters
+                    .Add("@id", SqlDbType.Int).Value = id;
+
+                sqlConnection.Open();
+
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        return null;
+
+                    return new Pessoa
+                    {
+                        Id = reader.GetFieldValue<int>(name: "Id"),
+                        Nome = reader.GetFieldValue<string>(name: "Nome"),
+                        DataNascimento = reader.GetFieldValue<DateTime>(name: "DataNascimento").ToString()
+                    };
+                }
+
+            }
+        }
+
+        public void Update(int id, Pessoa pessoa)
+        {
+            const string cmdText = "UPDATE Pessoa " +
+                   " SET Nome = (@nome), DataNascimento = (@dataNascimento) WHERE Id = @id; ";
+
+            using (var sqlConnection = new SqlConnection(_connectionString)) //já faz o close e dispose
+            using (var sqlCommand = new SqlCommand(cmdText, sqlConnection)) //já faz o close
+            {
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters
+                    .Add("@id", SqlDbType.Int).Value = pessoa.Id;
+                sqlCommand.Parameters
+                    .Add("@nome", SqlDbType.VarChar).Value = pessoa.Nome;
+                sqlCommand.Parameters
+                    .Add("@dataNascimento", SqlDbType.Date).Value = pessoa.DataNascimento;
+
+                sqlConnection.Open();
+
+                var resultScalar = sqlCommand.ExecuteScalar();
+
+            }
+        }
+
+        public void Delete(int id)
+        {
+
+            const string cmdText = "DELETE FROM Pessoa WHERE Id = @id; ";
+
+            using (var sqlConnection = new SqlConnection(_connectionString)) //já faz o close e dispose
+            using (var sqlCommand = new SqlCommand(cmdText, sqlConnection)) //já faz o close
+            {
+                sqlCommand.CommandType = CommandType.Text;
+
+                sqlCommand.Parameters
+                    .Add("@id", SqlDbType.Int).Value = id;
+
+                sqlConnection.Open();
+
+                var resultScalar = sqlCommand.ExecuteScalar();
+
+            }
+        }
+
+
     }
 }

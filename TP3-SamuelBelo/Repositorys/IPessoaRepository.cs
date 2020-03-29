@@ -11,5 +11,8 @@ namespace TP3_SamuelBelo.Repositorys
     {
         int Add(Pessoa pessoa);
         IEnumerable<Pessoa> GetAll();
+        Pessoa GetById(int id);
+        void Update(int id, Pessoa pessoa);
+        void Delete(int id);
     }
 }
