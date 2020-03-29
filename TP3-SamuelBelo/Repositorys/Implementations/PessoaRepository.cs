@@ -22,10 +22,10 @@ namespace TP3_SamuelBelo.Repositorys.Implementations
 
         public int Add(Pessoa pessoa)
         {
-            var cmdText = "INSERT INTO Pessoa" +
-                   "(Nome, DataNascimento)" +
-                   "OUTPUT INSERTED.Id" +
-                   "VALUES	(@Nome, @DataNascimento);";
+            var cmdText = "INSERT INTO Pessoa " +
+                   " (Nome, DataNascimento) " +
+                   " OUTPUT INSERTED.Id " +
+                   " VALUES (@Nome, @DataNascimento);";
 
             using (var sqlConnection = new SqlConnection(_connectionString)) //já faz o close e dispose
             using (var sqlCommand = new SqlCommand(cmdText, sqlConnection)) //já faz o close

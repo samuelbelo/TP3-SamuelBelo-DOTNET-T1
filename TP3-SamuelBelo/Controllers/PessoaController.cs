@@ -35,17 +35,21 @@ namespace TP3_SamuelBelo.Controllers
         // GET: Pessoa/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
         // POST: Pessoa/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Pessoa pessoa)
+        public ActionResult Create(PessoaAggregateViewModel pessoaAggregateViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                _pessoaService.Add(new Pessoa {
+                    Nome = pessoaAggregateViewModel.NomePessoa, 
+                    DataNascimento = pessoaAggregateViewModel.DataNascimento.ToString() 
+                });
 
                 return RedirectToAction(nameof(Index));
             }
