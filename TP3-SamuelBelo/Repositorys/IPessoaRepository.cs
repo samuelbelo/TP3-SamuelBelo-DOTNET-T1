@@ -9,7 +9,7 @@ namespace TP3_SamuelBelo.Repositorys
 {
     public interface IPessoaRepository
     {
-        void Add(Pessoa pessoa);
+        int Add(Pessoa pessoa);
         IEnumerable<Pessoa> GetAll();
     }
 }

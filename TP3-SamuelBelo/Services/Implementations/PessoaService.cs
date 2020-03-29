@@ -16,7 +16,7 @@ namespace TP3_SamuelBelo.Services.Implementations
             _pessoaRepository = pessoaRepository;
         }
 
-        public void Add(Pessoa pessoa)
+        public int Add(Pessoa pessoa)
         {
             if (pessoa == null)
                 throw new ArgumentNullException(paramName: "Pessoa nao pode ser vazio");
@@ -24,13 +24,15 @@ namespace TP3_SamuelBelo.Services.Implementations
             if(string.IsNullOrWhiteSpace(pessoa.Nome))
                 throw new ArgumentException(message: "Nome inválido");
 
-            _pessoaRepository.Add(pessoa);
+            var id = _pessoaRepository.Add(pessoa);
+
+            return id;
 
         }
 
         public IEnumerable<Pessoa> GetAll()
         {
-            throw new NotImplementedException();
+            return _pessoaRepository.GetAll();
         }
     }
 }

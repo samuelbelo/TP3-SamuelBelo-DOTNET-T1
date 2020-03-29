@@ -9,7 +9,7 @@ namespace TP3_SamuelBelo.Services.Implementations
 {
     public interface IPessoaService
     {
-        void Add(Pessoa pessoa);
+        int Add(Pessoa pessoa);
         IEnumerable<Pessoa> GetAll();
     }
 }

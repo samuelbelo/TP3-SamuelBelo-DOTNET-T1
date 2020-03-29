@@ -4,5 +4,7 @@
 	DataNascimento DATE NOT NULL 
 );
 SELECT * FROM Pessoa
-INSERT INTO Pessoa (Nome, DataNascimento) VALUES ('Samuel Belo', '2016-05-01');
+INSERT INTO Pessoa (Nome, DataNascimento) 
+OUTPUT INSERTED.Id 
+VALUES ('Samuel Belo', '2016-05-01');
 --DROP TABLE Pessoa
