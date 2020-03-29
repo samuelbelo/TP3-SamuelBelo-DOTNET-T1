@@ -6,5 +6,9 @@
 SELECT * FROM Pessoa
 INSERT INTO Pessoa (Nome, DataNascimento) 
 OUTPUT INSERTED.Id 
-VALUES ('Samuel Belo', '2016-05-01');
+VALUES ('Samuel Belo', '2016-05-01'), 
+('Aluno da Silva', '2016-05-01'), 
+('Professor Felipe', '2016-05-01'), 
+('Mariana Soares', '2016-05-01'), 
+('Samuel Santos', '2016-05-01');
 --DROP TABLE Pessoa

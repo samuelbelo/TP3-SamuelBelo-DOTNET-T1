@@ -13,7 +13,7 @@ namespace TP3_SamuelBelo.Repositorys.Implementations
     public class PessoaRepository : IPessoaRepository
 
     {
-        private string _connectionString;
+        private readonly string _connectionString;
         public PessoaRepository(IConfiguration configuration)
         {
             _connectionString = configuration.GetValue<string>("PessoaConnectionString");

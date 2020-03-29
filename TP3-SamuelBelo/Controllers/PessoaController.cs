@@ -1,20 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TP3_SamuelBelo.Models;
+using TP3_SamuelBelo.Repositorys.Implementations;
+using TP3_SamuelBelo.Services.Implementations;
 
 namespace TP3_SamuelBelo.Controllers
 {
     public class PessoaController : Controller
     {
+        private readonly IPessoaService _pessoaService;
+
+        public PessoaController(
+            IConfiguration configuration)
+        {
+            _pessoaService = new PessoaService(
+                new PessoaRepository(configuration));
+        }
+
+
         // GET: Pessoa
         public ActionResult Index()
         {
-            return View();
+            var pessoas = _pessoaService.GetAll();
+            return View(pessoas);
         }
+
 
         // GET: Pessoa/Details/5
         public ActionResult Details(int id)
